@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>咖啡業務拜訪日報表系統</title>
+    <!-- 引入 Tailwind CSS 確保介面現代、美觀、行動裝置友善 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-amber-50 text-slate-800 font-sans min-h-screen py-8 px-4">
+
+    <div class="max-w-2xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden border border-amber-100">
+        <!-- 頂部標題 -->
+        <div class="bg-amber-800 text-white py-6 px-8">
+            <h1 class="text-2xl font-bold flex items-center gap-2">
+                ☕ 咖啡業務拜訪日報表
+            </h1>
+            <p class="text-amber-200 text-sm mt-1">專為咖啡豆、濾掛包及設備業務打造的快速回報工具</p>
+        </div>
+
+        <!-- 表單內容 -->
+        <form id="salesForm" class="p-8 space-y-6">
+            
+            <!-- 基本資料 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">業務姓名 *</label>
+                    <input type="text" id="salesName" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:outline-none" placeholder="例如：王小明">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">填寫日期 *</label>
+                    <input type="date" id="reportDate" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:outline-none">
+                </div>
+            </div>
+
+            <hr class="border-slate-100">
+
+            <!-- 客戶與拜訪細節 -->
+            <div class="space-y-4">
+                <h2 class="text-lg font-bold text-amber-900 border-l-4 border-amber-600 pl-3">拜訪客戶資訊</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">客戶名稱 / 店名 *</label>
+                        <input type="text" id="clientName" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:outline-none" placeholder="例如：XX風格咖啡廳">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">客戶類型 *</label>
+                        <select id="clientType" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:outline-none">
+                            <option value="獨立咖啡廳">獨立咖啡廳</option>
+                            <option value="連鎖餐飲集團">連鎖餐飲集團</option>
+                            <option value="企業辦公室 (OCS)">企業辦公室 (OCS)</option>
+                            <option value="選物店 / 零售通路">選物店 / 零售通路</option>
+                            <option value="OEM / ODM 代工需求">OEM / ODM 代工需求</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">拜訪目的 (可複選)</label>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+                        <label class="flex items-center space-x-2 text-sm"><input type="checkbox" name="purpose" value="初次拜訪開發" class="rounded text-amber-600"><span>初次拜訪開發</span></label>
+                        <label class="flex items-center space-x-2 text-sm"><input type="checkbox" name="purpose" value="樣品試喝評估" class="rounded text-amber-600"><span>樣品試喝評估</span></label>
+                        <label class="flex items-center space-x-2 text-sm"><input type="checkbox" name="purpose" value="報價與合約洽談" class="rounded text-amber-600"><span>報價與合約洽談</span></label>
+                        <label class="flex items-center space-x-2 text-sm"><input type="checkbox" name="purpose" value="設備安裝維護" class="rounded text-amber-600"><span>設備安裝維護</span></label>
+                        <label class="flex items-center space-x-2 text-sm"><input type="checkbox" name="purpose" value="客訴與售後處理" class="rounded text-amber-600"><span>客訴與售後處理</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-slate-100">
+
+            <!-- 咖啡產業專屬回饋 -->
+            <div class="space-y-4">
+                <h2 class="text-lg font-bold text-amber-900 border-l-4 border-amber-600 pl-3">咖啡專業與戰果紀錄</h2>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">☕ 客戶風味回饋與試喝紀錄</label>
+                    <textarea id="tastingFeedback" rows="2" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:outline-none" placeholder="例如：試喝配方豆A，老闆覺得酸度偏高，希望尋找Body更厚實、帶有核果香氣的深焙豆..."></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">📦 樣品發送紀錄</label>
+                        <input type="text" id="sampleRecord" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:outline-none" placeholder="例如：配方豆A試用包 2包">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">🛠️ 設備與客製化需求</label>
+                        <input type="text" id="equipmentNeed" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:outline-none" placeholder="例如：需租賃雙孔義式機 / 需客製Logo濾掛包">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">📝 核心討論摘要與下一步行動 (Action Items)</label>
+                    <textarea id="actionItems" rows="3" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:outline-none" placeholder="1. 下週三寄送深焙豆試用包&#10;2. 提供正式設備租賃合約草稿"></textarea>
+                </div>
+            </div>
+
+            <!-- 操作按鈕 -->
+            <div class="pt-4 flex flex-col md:flex-row gap-4">
+                <button type="button" onclick="generateReport()" class="flex-1 bg-amber-700 hover:bg-amber-800 text-white font-bold py-3 px-6 rounded-lg transition duration-200 shadow-md">
+                    📋 生成回報文字
+                </button>
+                <button type="reset" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold py-3 px-6 rounded-lg transition duration-200">
+                    清除重填
+                </button>
+            </div>
+        </form>
+
+        <!-- 輸出結果區塊 -->
+        <div id="resultSection" class="hidden bg-slate-900 text-amber-50 p-8 border-t border-slate-800">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-amber-400">✨ 您的日報表格式已生成</h3>
+                <button onclick="copyToClipboard()" class="bg-amber-600 hover:bg-amber-500 text-white text-sm font-bold py-2 px-4 rounded transition duration-200">
+                    一鍵複製回報內容
+                </button>
+            </div>
+            <pre id="outputContent" class="bg-slate-950 p-4 rounded-lg text-sm text-slate-300 whitespace-pre-wrap font-mono overflow-x-auto border border-slate-800"></pre>
+        </div>
+    </div>
+
+    <!-- 簡易互動邏輯 -->
+    <script>
+        // 自動帶入今天日期
+        document.getElementById('reportDate').valueAsDate = new Date();
+
+        function generateReport() {
+            const name = document.getElementById('salesName').value;
+            const date = document.getElementById('reportDate').value;
+            const client = document.getElementById('clientName').value;
+            const type = document.getElementById('clientType').value;
+            
+            // 抓取勾選的目的
+            const purposes = Array.from(document.querySelectorAll('input[name="purpose"]:checked')).map(el => el.value).join(', ');
+            
+            const feedback = document.getElementById('tastingFeedback').value || '無';
+            const sample = document.getElementById('sampleRecord').value || '無';
+            const equipment = document.getElementById('equipmentNeed').value || '無';
+            const actions = document.getElementById('actionItems').value;
+
+            if (!name || !client) {
+                alert('請填寫「業務姓名」與「客戶名稱」！');
+                return;
+            }
+
+            const reportText = `【☕ 咖啡業務拜訪日報】
+📅 日期：${date}
+👤 業務：${name}
+-------------------------
+🏢 客戶名稱：${client} (${type})
+🎯 拜訪目的：${purposes || '一般拜訪'}
+-------------------------
+👅 風味回饋：${feedback}
+📦 樣品紀錄：${sample}
+🛠️ 設備需求：${equipment}
+-------------------------
+📌 討論摘要與下一步：
+${actions}`;
+
+            document.getElementById('outputContent').textContent = reportText;
+            document.getElementById('resultSection').classList.remove('hidden');
+            
+            // 自動滾動到結果區
+            document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copyToClipboard() {
+            const text = document.getElementById('outputContent').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ 已成功複製回報格式，可直接貼到 LINE 或 Email！');
+            }).catch(err => {
+                alert('複製失敗，請手動複製文字。');
+            });
+        }
+    </script>
+</body>
+</html>
